@@ -30,27 +30,12 @@ var repeatSection = function (musexpr, time) {
     time += musexpr.section.dur;
   }
   return repeatedArray;
-}
+};
 
 var convertPitch = function (note) {
-  var letter = note[0],
-      octave = note[1];
-  if ( letter === 'a' || letter === 'A' ) {
-    return 21 + octave * 12;
-  } else if ( letter === 'b' || letter === 'B' ) {
-    return 23 + octave * 12;
-  } else if ( letter === 'c' || letter === 'C' ) {
-    return 12 + octave * 12;
-  } else if ( letter === 'd' || letter === 'D' ) {
-    return 14 + octave * 12;
-  } else if ( letter === 'e' || letter === 'E' ) {
-    return 16 + octave * 12;
-  } else if ( letter === 'f' || letter === 'F' ) {
-    return 17 + octave * 12;
-  } else if ( letter === 'g' || letter === 'G' ) {
-    return 19 + octave * 12;
-  }
-}
+  var noteToPitch = { 'a':9, 'b':11, 'c':0, 'd':2, 'e':4, 'f':5, 'g':7 };
+  return 12 + noteToPitch[note.charAt(0).toLowerCase()] + note[1] * 12;
+};
 
 var endTime = function (time, musexpr) {
   if ( musexpr.tag === 'note' || musexpr.tag === 'rest' ) {
