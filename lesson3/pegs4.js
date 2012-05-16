@@ -1,0 +1,34 @@
+start =
+  expression
+
+validchar =
+  [0-9a-zA-Z_?!+\-=@#$%^&*/.]
+
+space =
+  [ \t\r\n]
+
+letter =
+  [a-z]
+
+digit =
+  [0-9]
+
+atom =
+  chars:validchar+
+  { return chars.join(""); }
+
+atomlist =
+  first:atom rest:(space atom)*
+  { return [first].concat(rest.map(function(item){ return item[1]; })); }
+
+expressionlist = 
+  first:expression rest:(space expression)*
+  { return [first].concat(rest.map(function(item){ return item[1]; })); }
+
+expression =
+  first:atom
+  { return first; }
+  / "(" space* first:atomlist space* ")"
+  { return first; }
+  / "(" space* first:expressionlist space* ")"
+  {return first; }
