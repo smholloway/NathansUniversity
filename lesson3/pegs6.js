@@ -18,8 +18,8 @@ multiplicative =
 
 primary =
     integer
-  / "(" additive:additive ")"
-      { return additive; }
+  / "(" comma:comma")"
+      { return comma; }
 
 integer =
     digits:[0-9]+
