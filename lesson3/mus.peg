@@ -1,0 +1,6 @@
+start =
+  note
+
+note =
+  chars:[a-zA-Z0-9]+
+  { return chars; }
